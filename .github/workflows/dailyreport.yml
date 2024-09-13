@@ -21,4 +21,4 @@ jobs:
         env:
           USER_EMAIL: ${{ secrets.USER_EMAIL }}
           USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
-        run: python Webscraper-Automation/.github/workflows/send-email.py
+        run: python .github/workflows/send-email.py
