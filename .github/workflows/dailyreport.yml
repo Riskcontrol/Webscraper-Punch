@@ -19,6 +19,8 @@ jobs:
           pip install requests
           pip install beautifulsoup4
           pip install pandas
+          pip install html5lib
+
       - name: Run email code
         env:
           USER_EMAIL: ${{ secrets.USER_EMAIL }}
