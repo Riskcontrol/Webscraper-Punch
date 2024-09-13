@@ -35,7 +35,7 @@ def send_email(sender_email, receiver_email, subject, body, attachment_path, smt
 # Define the target URL (example)
 url = 'https://punchng.com/feed/'
 response = requests.get(url)
-soup = BeautifulSoup(response.text, 'xml')
+soup = BeautifulSoup(response.text, 'lxml')
 
 # Define the keywords to search for
 risk_keywords = ['Rape', 'Kidnapping', 'Terrorism', 'Assaults', 'Homicide', 'Cultism', 'Piracy', 'Drowning', 'Armed Robbery', 'Fire Outbreak', 'Unsafe Route/Violent Attacks', 'Human Trafficking', 'Organ Trafficking']
