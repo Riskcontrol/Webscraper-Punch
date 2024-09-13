@@ -89,14 +89,14 @@ csv_filename = 'news_headlines.csv'
 df.to_csv(csv_filename, index=False)
 
 # Email configuration
-#sender_email = "nofiugodwin17@gmail.com"
+#sender_email = ""
 sender_email = os.environ.get('USER_EMAIL')
 receiver_email = "nofiumoruf17@gmail.com"
 subject = "Daily News Headlines"
 body = "Please find attached the latest news headlines with categorized information."
 smtp_server = "smtp.gmail.com"
 smtp_port = 587
-#smtp_password = "bmba acnn xwij dgch"
+#smtp_password = ""
 smtp_password = os.environ.get('USER_PASSWORD')
 # Send the email
 send_email(sender_email, receiver_email, subject, body, csv_filename, smtp_server, smtp_port, smtp_password)
