@@ -91,7 +91,7 @@ df.to_csv(csv_filename, index=False)
 # Email configuration
 #sender_email = ""
 sender_email = os.environ.get('USER_EMAIL')
-receiver_email = "nofiumoruf17@gmail.com"
+receiver_email = "riskcontrolservicesnig@gmail.com"
 subject = "Daily News Headlines"
 body = "Please find attached the latest news headlines with categorized information."
 smtp_server = "smtp.gmail.com"
