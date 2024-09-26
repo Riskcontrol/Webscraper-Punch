@@ -25,9 +25,8 @@ def send_email(sender_email, receiver_email, subject, body, attachment_path, smt
     part['Content-Disposition'] = f'attachment; filename="{os.path.basename(attachment_path)}"'
     msg.attach(part)
 
-    # Send the email
-    server = smtplib.SMTP(smtp_server, smtp_port)
-    server.starttls()
+    # Send the email using SMTP_SSL for port 465
+    server = smtplib.SMTP_SSL(smtp_server, smtp_port)
     server.login(sender_email, smtp_password)
     server.sendmail(sender_email, receiver_email, msg.as_string())
     server.quit()
@@ -35,7 +34,7 @@ def send_email(sender_email, receiver_email, subject, body, attachment_path, smt
 # Define the target URL (example)
 url = 'https://punchng.com/feed/'
 response = requests.get(url)
-soup = BeautifulSoup(response.text, 'lxml')
+soup = BeautifulSoup(response.text, 'xml')
 
 # Define the keywords to search for
 risk_keywords = ['Rape', 'Kidnapping', 'Terrorism', 'Assaults', 'Homicide', 'Cultism', 'Piracy', 'Drowning', 'Armed Robbery', 'Fire Outbreak', 'Unsafe Route/Violent Attacks', 'Human Trafficking', 'Organ Trafficking']
@@ -89,18 +88,15 @@ csv_filename = 'news_headlines.csv'
 df.to_csv(csv_filename, index=False)
 
 # Email configuration
-#sender_email = ""
 sender_email = os.environ.get('USER_EMAIL')
 receiver_email = "riskcontrolservicesnig@gmail.com"
 subject = "Daily News Headlines"
 body = "Please find attached the latest news headlines with categorized information."
 smtp_server = "smtp.gmail.com"
-smtp_port = 587
-#smtp_password = ""
-smtp_password = os.environ.get('USER_PASSWORD')
+smtp_port = 465  # SSL port for Gmail
+smtp_password = os.environ.get('USER_PASSWORD')  # Defining actual app-specific password here
+
 # Send the email
 send_email(sender_email, receiver_email, subject, body, csv_filename, smtp_server, smtp_port, smtp_password)
 
 print("Scraping, categorization, and email sent successfully.")
-
-
